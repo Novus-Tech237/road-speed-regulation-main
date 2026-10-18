@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: road-speed-regulation
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn --workers 1 --threads 8 --bind 0.0.0.0:$PORT app:app
+    healthCheckPath: /api/health
+    disk:
+      name: road-speed-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: RSR_DB
+        value: /var/data/road_speed.db
+      - key: RSR_CRED_FILE
+        value: /var/data/first_run_credentials.txt
+      - key: RSR_FORCE_HTTPS
+        value: "1"
+      - key: SEED_SAMPLE_DRIVERS
+        value: "0"
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: SMTP_FROM
+        sync: false

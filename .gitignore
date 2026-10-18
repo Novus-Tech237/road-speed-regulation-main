@@ -1,0 +1,6 @@
+config.env
+road_speed.db*
+first_run_credentials.txt
+.idea/
+__pycache__/
+.venv/

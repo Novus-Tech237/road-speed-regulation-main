@@ -1,0 +1,10 @@
+Flask>=3.0
+Werkzeug>=3.0
+gunicorn>=22.0
+# HTTPS for phones on the same Wi-Fi (python app.py --lan)
+cryptography>=42
+# MQTT link to roadside stations and vehicle units (used when MQTT_HOST is set)
+paho-mqtt>=2.0
+# Neon / PostgreSQL database (used when DATABASE_URL is set)
+psycopg[binary]>=3.2
+psycopg-pool>=3.2
